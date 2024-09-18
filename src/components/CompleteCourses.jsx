@@ -1,11 +1,15 @@
 // import { shallow } from "zustand/shallow"
-import { useState } from "react"
 import { useCourseStore } from "../store/store"
+import { useShallow } from "zustand/shallow"
 
 const CompleteCourses = () => {
-	const courses = useCourseStore((state) => state.courses)
-	const toggleCourseStatus = useCourseStore((state) => state.toggleCourseStatus)
-	const removeCourse = useCourseStore((state) => state.removeCourse)
+	const { courses, toggleCourseStatus, removeCourse } = useCourseStore(
+		useShallow((state) => ({
+			courses: state.courses,
+			toggleCourseStatus: state.toggleCourseStatus,
+			removeCourse: state.removeCourse,
+		}))
+	)
 
 	return (
 		<div className='courses'>
@@ -31,7 +35,7 @@ const CompleteCourses = () => {
 										color: "#fff",
 										borderRadius: "50%",
 										height: "40px",
-										width: '40px',
+										width: "40px",
 										marginRight: "30px",
 									}}
 								>

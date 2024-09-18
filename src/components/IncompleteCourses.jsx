@@ -1,9 +1,14 @@
+import { useShallow } from "zustand/shallow"
 import { useCourseStore } from "../store/store"
 
 const IncompleteCourses = () => {
-	const courses = useCourseStore((state) => state.courses)
-	const toggleCourseStatus = useCourseStore((state) => state.toggleCourseStatus)
-	const removeCourse = useCourseStore((state) => state.removeCourse)
+	const { courses, toggleCourseStatus, removeCourse } = useCourseStore(
+		useShallow((state) => ({
+			courses: state.courses,
+			toggleCourseStatus: state.toggleCourseStatus,
+			removeCourse: state.removeCourse,
+		}))
+	)
 
 	return (
 		<div className='courses'>
