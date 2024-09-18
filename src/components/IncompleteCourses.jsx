@@ -5,8 +5,8 @@ const IncompleteCourses = () => {
 	const { courses, toggleCourseStatus, removeCourse } = useCourseStore(
 		useShallow((state) => ({
 			courses: state.courses,
-			toggleCourseStatus: state.toggleCourseStatus,
-			removeCourse: state.removeCourse,
+			toggleCourseStatus: state.actions.toggleCourseStatus,
+			removeCourse: state.actions.removeCourse,
 		}))
 	)
 
